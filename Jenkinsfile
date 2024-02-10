@@ -15,19 +15,19 @@ pipeline {
      stages {
           stage("Compile") {
                steps {
-                    sh "/usr/bin/mvn compile"
+                    sh "/opt/mvn compile"
                }
           }
           stage("Unit test") {
                steps {
-                    sh "/usr/bin/mvn test"
+                    sh "/opt/mvn test"
                }
           }
 	     
 	  stage('SonarQube analysis') {
 	       steps {
                withSonarQubeEnv('sonarserver') {
-                   sh '/usr/bin/mvn sonar:sonar'
+                   sh '/opt/mvn sonar:sonar'
                    } // submitted SonarQube taskId is automatically attached to the pipeline context
 	       }
           }
@@ -47,7 +47,7 @@ pipeline {
      
           stage("Package") {
                steps {
-                     sh "/usr/bin/mvn package"
+                     sh "/opt/mvn package"
                }
           }
          stage("Docker build"){
