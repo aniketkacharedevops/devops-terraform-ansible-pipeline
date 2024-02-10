@@ -15,12 +15,12 @@ pipeline {
      stages {
           stage("Compile") {
                steps {
-                    sh "/opt/mvn compile"
+                    sh "/opt/apache-maven-3.9.6 compile"
                }
           }
           stage("Unit test") {
                steps {
-                    sh "/opt/mvn test"
+                    sh "/opt/apache-maven-3.9.6 test"
                }
           }
 	     
@@ -47,7 +47,7 @@ pipeline {
      
           stage("Package") {
                steps {
-                     sh "/opt/mvn package"
+                     sh "/opt/apache-maven-3.9.6 package"
                }
           }
          stage("Docker build"){
